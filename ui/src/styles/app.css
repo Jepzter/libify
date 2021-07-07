@@ -11,4 +11,5 @@ body {
 #app {
 	height: 100vh;
     display: flex;
+	background-color: #222831;
 }

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Landing from "@/components/Landing.vue";
 import Playlist from "@/components/Playlist.vue";
 import Settings from "@/components/Settings.vue";
+import SearchSongs from "@/components/SearchSongs.vue";
 
 const routes = [
   {
@@ -19,10 +20,13 @@ const routes = [
     path: '/settings',
     name: 'Settings',
     component: Settings
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-  }
+  },
+  {
+    path: '/search/:search',
+    name: 'SearchSongs',
+    component: SearchSongs,
+    props: true,
+  },
 ]
 
 const router = createRouter({

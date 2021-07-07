@@ -24,11 +24,7 @@ func (h *Handler) Find(c *gin.Context) {
 	}
 
 	var songs []Song
-	tx := h.DB.Where(&Song{
-		ID:     filter.ID,
-		Title:  filter.Title,
-		Artist: filter.Artist,
-	}).Find(&songs)
+	tx := h.DB.Find(&songs, "title like ?", filter.Title+"%")
 	if tx.Error != nil {
 		logrus.Errorf("error occurred while filtering songs with filters %+v:\n%s", filter, tx.Error)
 		c.AbortWithStatus(http.StatusInternalServerError)

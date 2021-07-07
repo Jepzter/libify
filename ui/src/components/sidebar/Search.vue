@@ -14,7 +14,7 @@ export default {
   Name: "Search",
   methods: {
     search(e) {
-      console.log(e.target.value);
+      this.$router.push({ path: `/search/${e.target.value}` });
     },
   },
 };
