@@ -47,6 +47,8 @@ export default {
 
 .playlist {
   flex-grow: 7;
+  max-height: 70%;
+  overflow: scroll;
 }
 hr {
   border-color: #00adb5;

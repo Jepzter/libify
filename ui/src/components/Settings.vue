@@ -23,20 +23,23 @@
     </div>
     <div>
       <button @click="save" class="save-btn">Save</button>
-	  <span class="fa fa-check" v-if="saved"/>
+      <span class="fa fa-check" v-if="saved" />
       <button @click="sync" class="sync-btn">Sync songs</button>
+      <span class="fa fa-check" v-if="synced" />
     </div>
   </div>
 </template>
 
 <script>
 import { SettingsService } from "@/services/SettingsService";
+import { SongService } from "@/services/SongService";
 export default {
   name: "Settings",
   data() {
     return {
       settings: {},
       saved: false,
+      synced: false,
     };
   },
   mounted() {
@@ -50,7 +53,11 @@ export default {
         res.status == 200 ? (this.saved = true) : (this.saved = false);
       });
     },
-    sync() {},
+    sync() {
+      SongService.sync().then((res) => {
+        res.status == 200 ? (this.synced = true) : (this.synced = false);
+      });
+    },
   },
 };
 </script>

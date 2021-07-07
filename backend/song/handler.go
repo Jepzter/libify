@@ -109,4 +109,5 @@ func (h *Handler) Sync(c *gin.Context) {
 		logrus.Info("Imported song ", song)
 	}
 	logrus.Info("song sync complete")
+	c.Status(200)
 }
