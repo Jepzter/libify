@@ -10,4 +10,10 @@ export const PlaylistService = {
 		return axios.get(`http://localhost:8085/api/libify/playlist-v1/${playlistId}`)
 			.then(res => res.data);
 	},
+	createPlaylist: playlist => {
+		return axios.post(`http://localhost:8085/api/libify/playlist-v1`, playlist)
+	},
+	updatePlaylist: playlist => {
+		return axios.put(`http://localhost:8085/api/libify/playlist-v1`, playlist)
+	}
 };

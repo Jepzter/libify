@@ -17,5 +17,6 @@ func (a *API) Register() {
 		playlistV1.GET("", handler.Find)
 		playlistV1.GET("/:id", handler.Get)
 		playlistV1.POST("", handler.Create)
+		playlistV1.PUT("", handler.Update)
 	}
 }

@@ -81,3 +81,20 @@ func (h *Handler) Create(c *gin.Context) {
 	h.DB.First(&createdPlaylist, playlist.ID)
 	c.JSON(201, createdPlaylist)
 }
+
+func (h *Handler) Update(c *gin.Context) {
+	var playlist Playlist
+	err := c.BindJSON(&playlist)
+	if err != nil {
+		c.AbortWithStatus(http.StatusBadRequest)
+		return
+	}
+	playlist.UpdatedAt = time.Now()
+	tx := h.DB.Model(Playlist{}).Where("id = ?", playlist.ID).Updates(&playlist)
+	if tx.Error != nil {
+		logrus.Warnf("could not update playlist %+v: %v", playlist, tx.Error)
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
+	c.JSON(200, playlist)
+}
